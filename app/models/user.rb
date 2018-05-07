@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   enum gender: {male: 0, female: 1, any: 2}
 
+	mount_uploader :image, ImageUploader
+
 end
