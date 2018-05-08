@@ -20,6 +20,8 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 #devise
 gem 'devise'
+#activeAdmin
+gem 'activeadmin', '~> 1.0.0.pre2' 
 #carrierwave (to add image) and mini magic (to resize image)
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.3'
@@ -33,6 +35,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+#ckedtor
+gem 'ckeditor'
+#paperclip
+gem 'paperclip'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

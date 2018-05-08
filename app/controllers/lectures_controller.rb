@@ -1,5 +1,5 @@
 class LecturesController < ApplicationController
-  before_action :set_lecture, only: [:show, :edit, :update, :destroy]
+  before_action :set_lecture, only: [:download, :show, :edit, :update, :destroy]
 
   # GET /lectures
   # GET /lectures.json
@@ -10,9 +10,6 @@ class LecturesController < ApplicationController
   # GET /lectures/1
   # GET /lectures/1.json
   def show
-    extension=@lecture.attachment.split('.')
-    send_file Rails.root.join('public','uploads',@lecture.attachment),
-    :type=>"application/#{extension[1]}", :x_sendfile=>true
   end
 
   # GET /lectures/new
@@ -48,8 +45,16 @@ class LecturesController < ApplicationController
   # PATCH/PUT /lectures/1
   # PATCH/PUT /lectures/1.json
   def update
+    uploaded_io = params[:lecture][:attachment]
+    File.open(Rails.root.join('public','uploads',uploaded_io.original_filename),'wb') do |file|
+   file.write(uploaded_io.read)
+    end
+    params[:lecture][:attachment]= uploaded_io.original_filename
+
     respond_to do |format|
+
       if @lecture.update(lecture_params)
+        
         format.html { redirect_to @lecture, notice: 'Lecture was successfully updated.' }
         format.json { render :show, status: :ok, location: @lecture }
       else
@@ -68,6 +73,12 @@ class LecturesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def download
+    extension=@lecture.attachment.split('.')
+    send_file Rails.root.join('public','uploads',@lecture.attachment),
+    :type=>"application/#{extension[1]}", :x_sendfile=>true
+  end 
 
   private
     # Use callbacks to share common setup or constraints between actions.

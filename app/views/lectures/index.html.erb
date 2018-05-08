@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Content</th>
       <th>Attachment</th>
       <th>course</th>
 
@@ -16,7 +15,6 @@
   <tbody>
     <% @lectures.each do |lecture| %>
       <tr>
-        <td><%= lecture.content %></td>
         <td><%= lecture.attachment %></td>
         <td><%= lecture.course.title %></td>
 

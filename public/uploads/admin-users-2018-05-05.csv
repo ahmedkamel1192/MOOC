@@ -1,0 +1,2 @@
+﻿Id,Email,Encrypted password,Reset password token,Reset password sent at,Remember created at,Current sign in at,Last sign in at,Current sign in ip,Last sign in ip,Created at,Updated at
+1,admin@example.com,$2a$11$/qO2yKFUaMlg9GXBQ9dacuVIbj5Hags0a71i9.ipey6wDfgBQnlgG,,,,2018-05-05 11:30:24 UTC,2018-05-05 11:30:24 UTC,127.0.0.1,127.0.0.1,2018-05-05 11:26:32 UTC,2018-05-05 11:30:24 UTC

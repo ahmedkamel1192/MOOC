@@ -2,16 +2,19 @@
 
 <p>
   <strong>Content:</strong>
-  <%= @lecture.content %>
+  <%= raw @lecture.content %>
 </p>
 
 <p>
   <strong>Attachment:</strong>
   <%= @lecture.attachment %>
 </p>
+<%= link_to 'download', download_lecture_path %>
+
 <p>
   <strong>Course:</strong>
   <%= @lecture.course.title %>
+
 </p>
 
 <%= link_to 'Edit', edit_lecture_path(@lecture) %> |
