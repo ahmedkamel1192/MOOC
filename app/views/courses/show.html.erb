@@ -1,9 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+
   <strong>Title:</strong>
   <%= @course.title %>
 </p>
+<h3> content of lectures </h3>
+<ul>
+<% @course.lectures.each do |lecture| %>
+  
+<li><%= link_to lecture.content , lecture %></li>
 
+<%end%>
+</ul>
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

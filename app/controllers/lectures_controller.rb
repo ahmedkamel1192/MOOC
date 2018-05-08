@@ -10,6 +10,9 @@ class LecturesController < ApplicationController
   # GET /lectures/1
   # GET /lectures/1.json
   def show
+    extension=@lecture.attachment.split('.')
+    send_file Rails.root.join('public','uploads',@lecture.attachment),
+    :type=>"application/#{extension[1]}", :x_sendfile=>true
   end
 
   # GET /lectures/new
@@ -25,8 +28,13 @@ class LecturesController < ApplicationController
   # POST /lectures.json
   def create
     @lecture = Lecture.new(lecture_params)
-
-    respond_to do |format|
+    #save file to server
+    uploaded_io = params[:lecture][:attachment]
+     File.open(Rails.root.join('public','uploads',uploaded_io.original_filename),'wb') do |file|
+    file.write(uploaded_io.read)
+     end
+    @lecture.attachment= uploaded_io.original_filename
+      respond_to do |format|
       if @lecture.save
         format.html { redirect_to @lecture, notice: 'Lecture was successfully created.' }
         format.json { render :show, status: :created, location: @lecture }

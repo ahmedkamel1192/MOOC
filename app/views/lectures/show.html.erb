@@ -9,6 +9,10 @@
   <strong>Attachment:</strong>
   <%= @lecture.attachment %>
 </p>
+<p>
+  <strong>Course:</strong>
+  <%= @lecture.course.title %>
+</p>
 
 <%= link_to 'Edit', edit_lecture_path(@lecture) %> |
 <%= link_to 'Back', lectures_path %>
