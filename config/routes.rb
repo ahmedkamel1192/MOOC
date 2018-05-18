@@ -5,8 +5,10 @@ Rails.application.routes.draw do
     member do
       get :download
       post :comment
-      post "like", to: "lectures#upvote"
-    post "dislike", to: "lectures#downvote"
+      put "like", to: "lectures#upvote"
+    put "dislike", to: "lectures#downvote"
+    put "spam", to: "lectures#spam_lecture"
+
     end
   end
   resources :courses

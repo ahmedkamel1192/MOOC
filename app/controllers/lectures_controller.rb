@@ -1,5 +1,5 @@
 class LecturesController < ApplicationController
-  before_action :set_lecture, only: [:download, :show, :edit, :update, :destroy]
+  before_action :set_lecture, only: [:download, :show, :edit, :update, :destroy, :spam]
   before_action :authenticate_user!
 
   # GET /lectures
@@ -107,11 +107,7 @@ class LecturesController < ApplicationController
       @lecture = Lecture.find(params[:id])
     end
 
-    def user_is_logged_in
-      if !session[:current_user]
-          redirect_to user_session_path
-      end
-    end
+   
 
 
     # Never trust parameters from the scary internet, only allow the white list through.

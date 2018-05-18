@@ -33,15 +33,16 @@
 <%= submit_tag "comment" , :class =>'btn btn-success'%>
 <% end %>
 <br>
-<%= link_to dislike_lecture_path(@lecture), :class =>'btn btn-success', method: :post do %>
+<%= link_to dislike_lecture_path(@lecture), :class =>'btn btn-success', method: :put do %>
   dislike
   <%= @lecture.get_downvotes.size %>
   <% end %>
 
-<%= link_to like_lecture_path(@lecture), :class =>'btn btn-info', method: :post do %>
+<%= link_to like_lecture_path(@lecture), :class =>'btn btn-info', method: :put do %>
   like
   <%= @lecture.get_upvotes.size %>
 <% end %>
+<
 
 <%= link_to 'Edit', edit_lecture_path(@lecture), :class =>'btn btn-success' %> |
 <%= link_to 'Back', lectures_path , :class =>'btn btn-warning'%>
