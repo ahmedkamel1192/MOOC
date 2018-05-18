@@ -39,6 +39,10 @@ gem 'jbuilder', '~> 2.5'
 gem 'ckeditor'
 #paperclip
 gem 'paperclip'
+#gem to add comment
+gem 'acts_as_commentable_with_threading'
+#gem to use like and dislike
+gem 'acts_as_votable', '~> 0.10.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

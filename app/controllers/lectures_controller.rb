@@ -73,18 +73,39 @@ class LecturesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def comment
+    @lecture = Lecture.find(params[:id])
+    @user_who_commented = current_user.id
+    comment = Comment.build_from(@lecture, @user_who_commented, params[:comment])
+    comment.save
+    redirect_to lecture_path
+  end
 
   def download
     extension=@lecture.attachment.split('.')
     send_file Rails.root.join('public','uploads',@lecture.attachment),
     :type=>"application/#{extension[1]}", :x_sendfile=>true
   end 
+  def upvote 
+    @lecture = Lecture.find(params[:id])
+    @lecture.upvote_by current_user
+    redirect_to lecture_path
+  end  
+  
+  def downvote
+    @lecture = Lecture.find(params[:id])
+    @lecture.downvote_by current_user
+    redirect_to lecture_path
+  end
+
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lecture
       @lecture = Lecture.find(params[:id])
     end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lecture_params

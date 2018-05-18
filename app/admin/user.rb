@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-    permit_params :email, :password, :password_confirmation
+    permit_params :email, :password, :password_confirmation, :name , :image
   
     index do
       selectable_column
@@ -19,6 +19,8 @@ ActiveAdmin.register User do
     form do |f|
       f.inputs "Admin Details" do
         f.input :email
+        f.input :name
+        f.input :image, :as => :file
         f.input :password
         f.input :password_confirmation
       end

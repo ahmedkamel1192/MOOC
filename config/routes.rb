@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :lectures do
     member do
       get :download
+      post :comment
+      post "like", to: "lectures#upvote"
+    post "dislike", to: "lectures#downvote"
     end
   end
   resources :courses

@@ -16,6 +16,29 @@
   <%= @lecture.course.title %>
 
 </p>
+<strong>Comments:</strong>
+
+<ol>
+<% @lecture.comment_threads.each do |comment| %>
+  <li> <%= comment.user.name %> : <%= comment.body %> </li> 
+<% end %>
+  </ol>
+
+ <%= form_tag comment_lecture_path, :method => :post do %>
+
+<%= text_field_tag "comment"  %>
+
+<%= submit_tag "Submit" , :class =>'btn btn-success'%>
+<% end %>
+<%= link_to dislike_lecture_path(@lecture), method: :post do %>
+  Downvote
+  <%= @lecture.get_downvotes.size %>
+  <% end %>
+
+<%= link_to like_lecture_path(@lecture), method: :post do %>
+  Upvote
+  <%= @lecture.get_upvotes.size %>
+<% end %>
 
 <%= link_to 'Edit', edit_lecture_path(@lecture) %> |
 <%= link_to 'Back', lectures_path %>
