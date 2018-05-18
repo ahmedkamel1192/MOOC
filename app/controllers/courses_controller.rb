@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /courses
   # GET /courses.json
   def index
@@ -65,6 +65,12 @@ class CoursesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_course
       @course = Course.find(params[:id])
+    end
+
+    def user_is_logged_in
+      if !session[:current_user]
+          redirect_to user_session_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,15 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+
   <strong>Content:</strong>
-  <%= raw @lecture.content %>
-</p>
+  <div class="alert alert-info" role="alert"> <%= raw @lecture.content %>
+</div>
+ 
 
 <p>
   <strong>Attachment:</strong>
   <%= @lecture.attachment %>
 </p>
-<%= link_to 'download', download_lecture_path %>
+<%= link_to 'download', download_lecture_path, :class =>'btn btn-info' %>
 
 <p>
   <strong>Course:</strong>
@@ -18,27 +19,29 @@
 </p>
 <strong>Comments:</strong>
 
-<ol>
+
 <% @lecture.comment_threads.each do |comment| %>
-  <li> <%= comment.user.name %> : <%= comment.body %> </li> 
+  <div class="alert alert-info" role="alert">
+ <span style="color:red"> <%= comment.user.name %> </span>: <%= comment.body %>
+  </div>
 <% end %>
-  </ol>
 
  <%= form_tag comment_lecture_path, :method => :post do %>
 
-<%= text_field_tag "comment"  %>
+<%= text_field_tag "comment" %>
 
-<%= submit_tag "Submit" , :class =>'btn btn-success'%>
+<%= submit_tag "comment" , :class =>'btn btn-success'%>
 <% end %>
-<%= link_to dislike_lecture_path(@lecture), method: :post do %>
-  Downvote
+<br>
+<%= link_to dislike_lecture_path(@lecture), :class =>'btn btn-success', method: :post do %>
+  dislike
   <%= @lecture.get_downvotes.size %>
   <% end %>
 
-<%= link_to like_lecture_path(@lecture), method: :post do %>
-  Upvote
+<%= link_to like_lecture_path(@lecture), :class =>'btn btn-info', method: :post do %>
+  like
   <%= @lecture.get_upvotes.size %>
 <% end %>
 
-<%= link_to 'Edit', edit_lecture_path(@lecture) %> |
-<%= link_to 'Back', lectures_path %>
+<%= link_to 'Edit', edit_lecture_path(@lecture), :class =>'btn btn-success' %> |
+<%= link_to 'Back', lectures_path , :class =>'btn btn-warning'%>

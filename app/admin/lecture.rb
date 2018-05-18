@@ -4,7 +4,9 @@ ActiveAdmin.register Lecture do
     index do
       selectable_column
       id_column
-      column :content
+      column 'Content', Lecture.ids.each do |f|
+        raw f.content
+      end
       column :attachment
       actions
     end

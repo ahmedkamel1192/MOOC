@@ -43,6 +43,9 @@ gem 'paperclip'
 gem 'acts_as_commentable_with_threading'
 #gem to use like and dislike
 gem 'acts_as_votable', '~> 0.10.0'
+#gem for bootstrap and jquery
+gem 'bootstrap-sass', '~> 3.3.7'
+gem 'jquery-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
